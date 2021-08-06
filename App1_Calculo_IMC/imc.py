@@ -3,7 +3,6 @@ from tkinter import *
 
 # Função Principal
 def imc():
-    
     p = float(entrada_peso.get())
     a = float(entrada_altura.get())
     if a > 100:
@@ -28,38 +27,54 @@ def imc():
     result_imc.set(cal)
 
 
-dicionario = {'Magreza Grau III': 'abaixo de 16', 'Magreza Grau II': '16 a 16,9', 'Magreza Grau II': '17 a 18,4',
-                'Adequado': '18,5 a 24,9', 'Pré-Obeso': '25 a 29,9', 'Obesidade Grau I': '30 a 34,9',
-                'Obesidade Grau II': '35 a 39,9', 'Obesidade Grau III': 'acima de 40'}
+lista = ['Abaixo de 16 : Magreza Grau III ', '16 a 16,9 : Magreza Grau II', '17 a 18,4 : Magreza Grau II ',
+                '18,5 a 24,9 : Adequado ', '25 a 29,9 : Pré-Obeso', '30 a 34,9 : Obesidade Grau I',
+                '35 a 39,9 : Obesidade Grau II', 'Acima de 40 : Obesidade Grau III']
 # Tela
 tela = Tk()
+tela.title('Calculo De IMC')
+tela.iconbitmap('data/icone.ico')
 result_imc = StringVar()
 result_classe = StringVar()
+tela.resizable(False, False)
+tela['bg'] = '#c7fdff'
+
+
 # Elementos
-Titulo_Programa = Label(tela, text='Calculo De IMC', font='verdana 16 bold')
-txt_peso = Label(tela, text='Peso', font='verdana 12 bold')
-txt_altura = Label(tela, text='Altura', font='verdana 12 bold')
-txt_imc = Label(tela, textvariable= result_imc)
-txt_clase = Label(tela, textvariable= result_classe)
+Titulo_Programa = Label(tela, text='Calculo De IMC', font='verdana 16 bold', width=18, bg='#e3733b', bd=2, relief='raised')
+
+txt_peso = Label(tela, text='Peso', font='verdana 12 bold', width=12, bg='#c7fdff')
+txt_altura = Label(tela, text='Altura', font='verdana 12 bold', width=12,  bg='#c7fdff')
+txt_imc = Label(tela,textvariable= result_imc, bg='#c7fdff')
+txt_clase = Label(tela, textvariable= result_classe, bg='#c7fdff')
+txt_imc_result = Label(tela, text='IMC', bg='#c7fdff')
+txt_clase_result = Label(tela, text='Classe', bg='#c7fdff')
+
 entrada_peso = Entry(tela)
 entrada_altura = Entry(tela)
-bto = Button(tela, text='Calcular', command=imc)
-lista1 = Listbox(tela, justify=CENTER)
-lista2 = Listbox(tela, justify=CENTER)
 
-for i, v in dicionario.items():
-    lista1.insert(0, i)
-    lista2.insert(0, v)
+bto = Button(tela, text='Calcular', command=imc, bg='#e3733b')
+
+lista1 = Listbox(tela, width=30,bg='#c7fdff')
+for c in lista:
+    lista1.insert(0, c)
+
 
 # layout
 Titulo_Programa.grid(columnspan=2, sticky=N)
+
 txt_peso.grid(row=1, column=0, sticky=W)
 txt_altura.grid(row=2, column=0, sticky=W)
-txt_imc.grid(row=3, column=0)
-txt_clase.grid(row=3, column=1)
+txt_imc_result.grid(row=3, column=0)
+txt_imc.grid(row=4, column=0)
+txt_clase_result.grid(row=3, column=1)
+txt_clase.grid(row=4, column=1)
+
 entrada_peso.grid(row=1, column=1)
 entrada_altura.grid(row=2, column=1)
+
 bto.grid(columnspan=2, sticky=S)
-lista1.grid(row=4, column=0)
-lista2.grid(row=4, column=1)
+
+lista1.grid(columnspan=2, sticky=S)
+
 tela.mainloop()
