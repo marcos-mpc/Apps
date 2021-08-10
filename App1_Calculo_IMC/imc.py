@@ -13,7 +13,7 @@ def imc():
     elif 16 < float(cal) < 16.9:
         result_classe.set('Magreza Grau II')
     elif 17 < float(cal) < 18.4:
-        result_classe.set('Magreza Grau II')
+        result_classe.set('Magreza Grau I')
     elif 18.5 < float(cal) < 24.9:
         result_classe.set('Adequado')
     elif 25 < float(cal) < 29.9:
@@ -27,7 +27,7 @@ def imc():
     result_imc.set(cal)
 
 
-lista = ['Abaixo de 16 : Magreza Grau III ', '16 a 16,9 : Magreza Grau II', '17 a 18,4 : Magreza Grau II ',
+lista = ['Abaixo de 16 : Magreza Grau III ', '16 a 16,9 : Magreza Grau II', '17 a 18,4 : Magreza Grau I',
                 '18,5 a 24,9 : Adequado ', '25 a 29,9 : Pré-Obeso', '30 a 34,9 : Obesidade Grau I',
                 '35 a 39,9 : Obesidade Grau II', 'Acima de 40 : Obesidade Grau III']
 # Tela
@@ -57,7 +57,7 @@ bto = Button(tela, text='Calcular', command=imc, bg='#e3733b')
 
 lista1 = Listbox(tela, width=30,bg='#c7fdff')
 for c in lista:
-    lista1.insert(0, c)
+    lista1.insert(END, c)
 
 
 # layout
