@@ -1,18 +1,21 @@
 from tkinter import *
-from time import sleep
+import pygame
+pygame.init()
 
 
 def imc():
     try:
         p = float(entrada_peso.get())
-        a = float(entrada_altura.get())
+        a = float(str(entrada_altura.get()).replace(',', '.'))
         if a > 100:
             a /= 100
         cal = str(f'{p / (a * a):.2f}')
     except ValueError:
+        click1.play()
         janelaErro.grid(row=6, columnspan=2)
 
     else:
+        click2.play()
         if float(cal) < 16:
             result_classe.set('Magreza Grau III')
         elif 16 < float(cal) < 16.99:
@@ -29,16 +32,22 @@ def imc():
             result_classe.set('Obesidade Grau II')
         elif float(cal) >= 40:
             result_classe.set('Obesidade Grau III')
-        sleep(0.5)
+        janelaErro.grid_forget()
         result_imc.set(cal)
 
 
 def lp():
+    click2.play()
     result_classe.set('')
     result_imc.set('')
     entrada_peso.delete(0, 'end')
     entrada_altura.delete(0, 'end')
     entrada_peso.focus()
+    janelaErro.grid_forget()
+
+
+click1 = pygame.mixer.Sound('data/click_sound_1.mp3')
+click2 = pygame.mixer.Sound('data/zipclick.flac')
 
 
 # Tela
@@ -48,26 +57,26 @@ tela.iconbitmap('data/icone.ico')
 result_imc = StringVar()
 result_classe = StringVar()
 tela.resizable(False, False)
-tela['bg'] = '#c7fdff'
+tela['bg'] = '#DAFAB2'
 
 # Elementos
-Titulo_Programa = Label(tela, text='Calculo De IMC', font='verdana 16 bold', width=18, bg='#e3733b', bd=2,
-                        relief='raised')
+Titulo_Programa = Label(tela, text='Calculo De IMC', font='verdana 16 bold', width=18, bg='#ABDE9E', bd=2,
+                        relief='groove')
 
-txt_peso = Label(tela, text='Peso', font='verdana 12 bold', width=12, bg='#c7fdff')
-txt_altura = Label(tela, text='Altura', font='verdana 12 bold', width=12, bg='#c7fdff')
-txt_imc = Label(tela, textvariable=result_imc, bg='#c7fdff')
-txt_clase = Label(tela, textvariable=result_classe, bg='#c7fdff')
-txt_imc_result = Label(tela, text='IMC', bg='#c7fdff')
-txt_clase_result = Label(tela, text='Classe', bg='#c7fdff')
+txt_peso = Label(tela, text='Peso', font='verdana 12 bold', width=12, bg='#DAFAB2')
+txt_altura = Label(tela, text='Altura', font='verdana 12 bold', width=12, bg='#DAFAB2')
+txt_imc = Label(tela, textvariable=result_imc, bg='#DAFAB2', relief='ridge', width=19)
+txt_clase = Label(tela, textvariable=result_classe, bg='#DAFAB2', relief='ridge', width=19)
+txt_imc_result = Label(tela, text='IMC', bg='#DAFAB2', relief='ridge', width=19)
+txt_clase_result = Label(tela, text='Classe', bg='#DAFAB2', relief='ridge', width=19)
 
-entrada_peso = Entry(tela)
-entrada_altura = Entry(tela)
+entrada_peso = Entry(tela, justify=CENTER)
+entrada_altura = Entry(tela, justify=CENTER)
 
-bto = Button(tela, text='Calcular', command=imc, bg='#e3733b', width=15)
-bto2 = Button(tela, text='Limpar', bg='#e3733b', command=lp, width=15)
+bto = Button(tela, text='Calcular', command=imc, bg='#ABDE9E', width=15)
+bto2 = Button(tela, text='Limpar', bg='#ABDE9E', command=lp, width=15)
 
-janelaErro = Label(tela, text='ERRO! Digite um valor válido!')
+janelaErro = Label(tela, text='ERRO! Digite um numero válido!', bg='#F55541', width=39)
 
 # layout
 Titulo_Programa.grid(columnspan=2, sticky=N)
