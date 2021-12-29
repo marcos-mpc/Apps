@@ -3,29 +3,34 @@ from time import sleep
 
 
 def imc():
-    p = float(entrada_peso.get())
-    a = float(entrada_altura.get())
-    if a > 100:
-        a /= 100
-    cal = str(f'{p / (a * a):.2f}')
-    if float(cal) < 16:
-        result_classe.set('Magreza Grau III')
-    elif 16 < float(cal) < 16.99:
-        result_classe.set('Magreza Grau II')
-    elif 17 < float(cal) < 18.49:
-        result_classe.set('Magreza Grau I')
-    elif 18.5 < float(cal) < 24.99:
-        result_classe.set('Adequado')
-    elif 25 < float(cal) < 29.99:
-        result_classe.set('Pré-Obeso')
-    elif 30 < float(cal) < 34.99:
-        result_classe.set('Obesidade Grau I')
-    elif 35 < float(cal) < 39.99:
-        result_classe.set('Obesidade Grau II')
-    elif float(cal) >= 40:
-        result_classe.set('Obesidade Grau III')
-    sleep(0.5)
-    result_imc.set(cal)
+    try:
+        p = float(entrada_peso.get())
+        a = float(entrada_altura.get())
+        if a > 100:
+            a /= 100
+        cal = str(f'{p / (a * a):.2f}')
+    except ValueError:
+        janelaErro.grid(row=6, columnspan=2)
+
+    else:
+        if float(cal) < 16:
+            result_classe.set('Magreza Grau III')
+        elif 16 < float(cal) < 16.99:
+            result_classe.set('Magreza Grau II')
+        elif 17 < float(cal) < 18.49:
+            result_classe.set('Magreza Grau I')
+        elif 18.5 < float(cal) < 24.99:
+            result_classe.set('Adequado')
+        elif 25 < float(cal) < 29.99:
+            result_classe.set('Pré-Obeso')
+        elif 30 < float(cal) < 34.99:
+            result_classe.set('Obesidade Grau I')
+        elif 35 < float(cal) < 39.99:
+            result_classe.set('Obesidade Grau II')
+        elif float(cal) >= 40:
+            result_classe.set('Obesidade Grau III')
+        sleep(0.5)
+        result_imc.set(cal)
 
 
 def lp():
@@ -62,6 +67,7 @@ entrada_altura = Entry(tela)
 bto = Button(tela, text='Calcular', command=imc, bg='#e3733b', width=15)
 bto2 = Button(tela, text='Limpar', bg='#e3733b', command=lp, width=15)
 
+janelaErro = Label(tela, text='ERRO! Digite um valor válido!')
 
 # layout
 Titulo_Programa.grid(columnspan=2, sticky=N)
