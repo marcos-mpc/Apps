@@ -1,13 +1,13 @@
 from tkinter import *
+from time import sleep
 
 
-# Função Principal
 def imc():
     p = float(entrada_peso.get())
     a = float(entrada_altura.get())
     if a > 100:
         a /= 100
-    cal = str(f'{p / (a*a):.2f}')
+    cal = str(f'{p / (a * a):.2f}')
     if float(cal) < 16:
         result_classe.set('Magreza Grau III')
     elif 16 < float(cal) < 16.9:
@@ -24,12 +24,18 @@ def imc():
         result_classe.set('Obesidade Grau II')
     elif float(cal) >= 40:
         result_classe.set('Obesidade Grau III')
+    sleep(0.5)
     result_imc.set(cal)
 
 
-lista = ['Abaixo de 16 : Magreza Grau III ', '16 a 16,9 : Magreza Grau II', '17 a 18,4 : Magreza Grau I',
-                '18,5 a 24,9 : Adequado ', '25 a 29,9 : Pré-Obeso', '30 a 34,9 : Obesidade Grau I',
-                '35 a 39,9 : Obesidade Grau II', 'Acima de 40 : Obesidade Grau III']
+def lp():
+    result_classe.set('')
+    result_imc.set('')
+    entrada_peso.delete(0, 'end')
+    entrada_altura.delete(0, 'end')
+    entrada_peso.focus()
+
+
 # Tela
 tela = Tk()
 tela.title('Calculo De IMC')
@@ -39,26 +45,26 @@ result_classe = StringVar()
 tela.resizable(False, False)
 tela['bg'] = '#c7fdff'
 
-
 # Elementos
-Titulo_Programa = Label(tela, text='Calculo De IMC', font='verdana 16 bold', width=18, bg='#e3733b', bd=2, relief='raised')
+Titulo_Programa = Label(tela, text='Calculo De IMC', font='verdana 16 bold', width=18, bg='#e3733b', bd=2,
+                        relief='raised')
 
 txt_peso = Label(tela, text='Peso', font='verdana 12 bold', width=12, bg='#c7fdff')
-txt_altura = Label(tela, text='Altura', font='verdana 12 bold', width=12,  bg='#c7fdff')
-txt_imc = Label(tela,textvariable= result_imc, bg='#c7fdff')
-txt_clase = Label(tela, textvariable= result_classe, bg='#c7fdff')
+txt_altura = Label(tela, text='Altura', font='verdana 12 bold', width=12, bg='#c7fdff')
+txt_imc = Label(tela, textvariable=result_imc, bg='#c7fdff')
+txt_clase = Label(tela, textvariable=result_classe, bg='#c7fdff')
 txt_imc_result = Label(tela, text='IMC', bg='#c7fdff')
 txt_clase_result = Label(tela, text='Classe', bg='#c7fdff')
 
 entrada_peso = Entry(tela)
 entrada_altura = Entry(tela)
 
-bto = Button(tela, text='Calcular', command=imc, bg='#e3733b')
+bto = Button(tela, text='Calcular', command=imc, bg='#e3733b', width=15)
+bto2 = Button(tela, text='Limpar', bg='#e3733b', command=lp, width=15)
 
-lista1 = Listbox(tela, width=30,bg='#c7fdff')
+lista1 = Listbox(tela, width=30, bg='#c7fdff')
 for c in lista:
     lista1.insert(END, c)
-
 
 # layout
 Titulo_Programa.grid(columnspan=2, sticky=N)
@@ -73,8 +79,7 @@ txt_clase.grid(row=4, column=1)
 entrada_peso.grid(row=1, column=1)
 entrada_altura.grid(row=2, column=1)
 
-bto.grid(columnspan=2, sticky=S)
-
-lista1.grid(columnspan=2, sticky=S)
+bto.grid(row=5, column=0)
+bto2.grid(row=5, column=1)
 
 tela.mainloop()
