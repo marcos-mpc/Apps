@@ -19,12 +19,17 @@ class Conector:
         self._cnx.commit()
         self._cnx.close()
 
-    def mostrar(self, exe):
+    def mostrar(self, exe='*', inicio='1', fim='10'):
         """executa comados de visualização de dados"""
         self._cursor = self._cnx.cursor()
-        self._cursor.execute(f"SELECT {exe} FROM produtos")
+        self._cursor.execute(f"SELECT {exe} FROM produtos "
+                             f"WHERE id BETWEEN {inicio} AND {fim}")
         rows = self._cursor.fetchall()
         for row in rows:
             for c in row:
                 print(f'{c}', end=' ')
             print('\n')
+
+
+tst = Conector()
+tst.mostrar()
