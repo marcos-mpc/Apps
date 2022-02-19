@@ -11,18 +11,17 @@ class Conector:
                                             host=self._host, database=self._database)
         self._cursor = None
 
-    def executar(self, executar):
+    def executar(self, exe):
         self._cursor = self._cnx.cursor()
-        self._cursor.execute(executar)
+        self._cursor.execute(exe)
         self._cnx.commit()
         self._cnx.close()
 
-    def mostrar(self):
+    def mostrar(self, exe):
         self._cursor = self._cnx.cursor()
-        self._cursor.execute("SELECT * FROM produtos")
+        self._cursor.execute(f"SELECT {exe} FROM produtos")
         rows = self._cursor.fetchall()
         for row in rows:
             for c in row:
                 print(f'{c}', end=' ')
             print('\n')
-
