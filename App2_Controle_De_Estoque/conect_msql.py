@@ -2,6 +2,7 @@ import mysql.connector
 
 
 class Conector:
+    """conecta o mysql ao python"""
     def __init__(self):
         self._user = 'root'
         self._password = ''
@@ -12,12 +13,14 @@ class Conector:
         self._cursor = None
 
     def executar(self, exe):
+        """executa comandos de manipulação de dados"""
         self._cursor = self._cnx.cursor()
         self._cursor.execute(exe)
         self._cnx.commit()
         self._cnx.close()
 
     def mostrar(self, exe):
+        """executa comados de visualização de dados"""
         self._cursor = self._cnx.cursor()
         self._cursor.execute(f"SELECT {exe} FROM produtos")
         rows = self._cursor.fetchall()
