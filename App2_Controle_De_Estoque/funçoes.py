@@ -20,16 +20,20 @@ def excluir(identificador):
     obj.executar(f"DELETE FROM produtos WHERE id = '{identificador}'")
 
 
-def renomear():
+def renomear(tupla, alteracao, iden):
+    """renomeia alguma coisa da tabela"""
+    try:
+        obj.executar(f"UPDATE produtos SET {tupla}= '{alteracao}' WHERE id ='{iden}'")
+    except Error:
+        print('ERRO! Refaça o processo!')
+
+
+def entrada_de_produto(n):
     pass
 
 
-def entrada_de_produto():
+def saida_de_produto(n):
     pass
 
 
-def saida_de_produto():
-    pass
 
-
-excluir('12')

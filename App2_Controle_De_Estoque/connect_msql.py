@@ -34,4 +34,4 @@ class Conector:
 
 if __name__ == '__main__':
     obg = Conector()
-    obg.mostrar()
+    obg.executar("UPDATE produtos SET cod= '126' WHERE id='11'")
