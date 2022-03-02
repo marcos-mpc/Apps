@@ -28,12 +28,15 @@ def renomear(tupla, alteracao, iden):
         print('ERRO! Refaça o processo!')
 
 
-def entrada_de_produto(n):
-    pass
+def entrada_de_produto(valor, iden):
+    try:
+        obj.executar(f"UPDATE produtos SET quantidade= (quantidade + '{valor}') WHERE id ='{iden}'")
+    except Error:
+        print('ERRO! Refaça o processo!')
 
 
-def saida_de_produto(n):
-    pass
-
-
-
+def saida_de_produto(valor, iden):
+    try:
+        obj.executar(f"UPDATE produtos SET quantidade= (quantidade - '{valor}') WHERE id ='{iden}'")
+    except Error:
+        print('ERRO! Refaça o processo!')
