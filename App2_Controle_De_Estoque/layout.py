@@ -14,21 +14,41 @@ tela.resizable(True, True)
 
 
 # Tela de dados
-def tela_de_dados():
+def cosultar_dados():
     dados = Toplevel()
     dados.title('Estoque')
+    dados.geometry(f'1350x670+1+9')
+    dados.resizable(False, False)
+
+
+def novo_produto():
+    novo = Toplevel()
+    novo.title('Novo Produto')
+    novo.geometry('1350x670+1+9')
+
+
+def abastecer():
+    entrada = Toplevel()
+    entrada.title('Abastecer')
+    entrada.geometry('1350x670+1+9')
+
+
+def saida():
+    sd = Toplevel()
+    sd.title('Saida')
+    sd.geometry('1350x670+1+9')
 
 
 # configuração de menu
 menu = Menu(tela)
 tabela = Menu(menu, tearoff=0)
-tabela.add_command(label='Novo Produto')
-tabela.add_command(label='Cosultar Dados')
+tabela.add_command(label='Novo Produto', command=novo_produto)
+tabela.add_command(label='Cosultar Dados', command=cosultar_dados)
 menu.add_cascade(label='Tabela', menu=tabela)
 
 estoque = Menu(menu, tearoff=0)
-estoque.add_command(label='Abastecer')
-estoque.add_command(label='Saida')
+estoque.add_command(label='Abastecer', command=abastecer)
+estoque.add_command(label='Saida', command=saida)
 menu.add_cascade(label='Estoque', menu=estoque)
 
 tela.config(menu=menu)
@@ -39,19 +59,19 @@ image_saida = PhotoImage(file='data/saida.png').subsample(3)
 image_cosulta = PhotoImage(file='data/pesquisar.png').subsample(3)
 image_novo = PhotoImage(file='data/novo produto.png').subsample(3)
 
-Button(tela, text='COSULTAR DADOS', command=tela_de_dados, font=('verdana', 16, 'italic'),
+Button(tela, text='COSULTAR DADOS', command=cosultar_dados, font=('verdana', 16, 'italic'),
        image=image_cosulta, compound='top',
        bg='#9590B0').place(x=400, y=100)
 
-Button(tela, text='NOVO PRODUTO', font=('verdana', 16, 'italic'),
+Button(tela, text='NOVO PRODUTO', command=novo_produto,  font=('verdana', 16, 'italic'),
        image=image_novo, compound='top', bg='#9590B0')\
     .place(x=400, y=420)
 
-Button(tela, text='ABASTECER', font=('verdana', 16, 'italic'),
+Button(tela, text='ABASTECER', command=abastecer, font=('verdana', 16, 'italic'),
        image=image_entrada, compound='top', bg='#9590B0')\
     .place(x=800, y=100)
 
-Button(tela, text='SAíDA', font=('verdana', 16, 'italic'),
+Button(tela, text='SAíDA', command=saida, font=('verdana', 16, 'italic'),
        image=image_saida, compound='top', bg='#9590B0')\
     .place(x=800, y=420)
 
