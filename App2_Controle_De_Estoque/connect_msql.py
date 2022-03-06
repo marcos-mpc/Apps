@@ -30,8 +30,3 @@ class Conector:
                 print(f'{c}', end=' ')
             print('\n')
         self._cursor.close()
-
-
-if __name__ == '__main__':
-    obg = Conector()
-    obg.executar("UPDATE produtos SET cod= '126' WHERE id='11'")
