@@ -26,7 +26,4 @@ class Conector:
                              f"WHERE id BETWEEN {inicio} AND {fim}")
         rows = self._cursor.fetchall()
         for row in rows:
-            for c in row:
-                print(f'{c}', end=' ')
-            print('\n')
-        self._cursor.close()
+            return row

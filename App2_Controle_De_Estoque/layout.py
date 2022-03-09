@@ -1,4 +1,7 @@
 from tkinter import *
+from connect_msql import Conector
+
+obj = Conector()
 
 # configurações de telas
 # Tela Principal
@@ -20,6 +23,10 @@ def cosultar_dados():
     dados.geometry(f'1350x670+1+9')
     dados.resizable(False, False)
 
+    # elementos da tela
+    lista = Listbox(dados)
+    lista.insert(END, obj.mostrar())
+    lista.pack()
 
 def novo_produto():
     novo = Toplevel()
