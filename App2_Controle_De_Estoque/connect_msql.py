@@ -3,6 +3,7 @@ import mysql.connector
 
 class Conector:
     """conecta o mysql ao python"""
+
     def __init__(self):
         self._user = 'root'
         self._password = ''
@@ -24,6 +25,11 @@ class Conector:
         self._cursor = self._cnx.cursor()
         self._cursor.execute(f"SELECT {exe} FROM produtos "
                              f"WHERE id BETWEEN {inicio} AND {fim}")
+        lt = []
         rows = self._cursor.fetchall()
-        for row in rows:
-            return row
+        return rows
+
+
+if __name__ == '__main__':
+    obj = Conector()
+    print(obj.mostrar())
