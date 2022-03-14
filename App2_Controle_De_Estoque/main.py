@@ -44,35 +44,35 @@ def cosultar_dados():
 
     lt = obj.mostrar()
     # ID
-    lista = Listbox(dados, relief='solid', font=('verdana', 20), justify=CENTER)
+    lista = Listbox(dados, relief='sunken', font=('verdana', 20), justify=CENTER)
     for c in lt:
         lista.insert(END, c[0])
-    lista.place(x=12, y=120, width=83, height=400)
+    lista.place(x=12, y=120, width=83, height=345)
     # CODIGO
-    lista = Listbox(dados, relief='solid', font=('verdana', 20), justify=CENTER)
+    lista = Listbox(dados, relief='sunken', font=('verdana', 20), justify=CENTER)
     for c in lt:
         lista.insert(END, c[1])
-    lista.place(x=97, y=120, width=159, height=400)
+    lista.place(x=97, y=120, width=159, height=345)
     # PRODUTOS
-    lista = Listbox(dados, relief='solid', font=('verdana', 20), justify=CENTER)
+    lista = Listbox(dados, relief='sunken', font=('verdana', 20), justify=CENTER)
     for c in lt:
         lista.insert(END, c[2])
-    lista.place(x=258, y=120, width=178, height=400)
+    lista.place(x=258, y=120, width=178, height=345)
     # TIPO UNITARIO
-    lista = Listbox(dados, relief='solid', font=('verdana', 20), justify=CENTER)
+    lista = Listbox(dados, relief='sunken', font=('verdana', 20), justify=CENTER)
     for c in lt:
         lista.insert(END, c[3])
-    lista.place(x=438, y=120, width=272, height=400)
+    lista.place(x=438, y=120, width=272, height=345)
     # QUANTIDADE
-    lista = Listbox(dados, relief='solid', font=('verdana', 20), justify=CENTER)
+    lista = Listbox(dados, relief='sunken', font=('verdana', 20), justify=CENTER)
     for c in lt:
         lista.insert(END, c[4])
-    lista.place(x=713, y=120, width=234, height=400)
+    lista.place(x=713, y=120, width=234, height=345)
     # DATA
-    lista = Listbox(dados, relief='solid', font=('verdana', 20), justify=CENTER)
+    lista = Listbox(dados, relief='sunken', font=('verdana', 20), justify=CENTER)
     for c in lt:
         lista.insert(END, c[5])
-    lista.place(x=950, y=120, width=385, height=400)
+    lista.place(x=950, y=120, width=385, height=345)
 
 
 def novo_produto():

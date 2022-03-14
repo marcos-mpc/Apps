@@ -20,7 +20,7 @@ class Conector:
         self._cnx.commit()
         self._cnx.close()
 
-    def mostrar(self, exe='*', inicio='1', fim='20'):
+    def mostrar(self, exe='*', inicio='1', fim='10'):
         """executa comados de visualização de dados"""
         self._cursor = self._cnx.cursor()
         self._cursor.execute(f"SELECT {exe} FROM produtos "
