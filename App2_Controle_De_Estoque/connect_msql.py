@@ -25,7 +25,6 @@ class Conector:
         self._cursor = self._cnx.cursor()
         self._cursor.execute(f"SELECT {exe} FROM produtos "
                              f"WHERE id BETWEEN {inicio} AND {fim}")
-        lt = []
         rows = self._cursor.fetchall()
         return rows
 
