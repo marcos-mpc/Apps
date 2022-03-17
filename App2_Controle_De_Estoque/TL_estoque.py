@@ -103,9 +103,5 @@ def cosultar_dados():
         lista.insert(END, c[5])
     lista.place(x=950, y=120, width=385, height=345)
 
-    def mostrar(inicio, fim):
-        ini = inicio
-        lt = obj.mostrar(inicio=inicio, fim=fim)
-
     Button(dados, text='>').place(x=700, y=500, width=80)
     Button(dados, text='<').place(x=620, y=500, width=80)
