@@ -28,7 +28,14 @@ class Conector:
         rows = self._cursor.fetchall()
         return rows
 
+    def mostrar_soma(self):
+        """executa comados para mostrar a quantidade de dados"""
+        self._cursor = self._cnx.cursor()
+        self._cursor.execute(f"SELECT count(*) FROM produtos ")
+        soma = self._cursor.fetchall()
+        return soma[0][0]
+
 
 if __name__ == '__main__':
     obj = Conector()
-    print(obj.mostrar())
+    print(obj.mostrar_soma())
