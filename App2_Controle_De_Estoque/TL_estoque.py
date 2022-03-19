@@ -12,9 +12,11 @@ class Cosultar:
         self.dados.geometry(f'1350x670+1+9')
         self.dados.resizable(False, False)
         self._inicio = 1
+        self.bt1 = Button(self.dados, text='>', command=self.adicao)
+        self.bt1.place(x=700, y=500, width=80)
+        self.bt2 = Button(self.dados, text='<', command=self.subtracao, state=DISABLED)
+        self.bt2.place(x=620, y=500, width=80)
         self._fim = 10
-
-        self.botoes()
 
         # elementos da tela
         lb_id = Label(self.dados,
@@ -113,28 +115,19 @@ class Cosultar:
     def adicao(self):
         self._inicio += 10
         self._fim += 10
-        print(self._inicio, self._fim)
+        if self._inicio > 1:
+            self.bt2['state'] = NORMAL
+        print(self._inicio)
 
     def subtracao(self):
-        if self._inicio == 1:
+        if self._inicio == 11:
             self._inicio = 1
             self._fim = 10
+            self.bt2['state'] = DISABLED
+            print(self._inicio)
 
         else:
             self._inicio -= 10
             self._fim -= 10
-            print(self._inicio, self._fim)
 
-    def botoes(self):
-        bt1 = Button(self.dados, text='>', command=self.adicao)
-        bt1.place(x=700, y=500, width=80)
-        bt2 = Button(self.dados, text='<', command=self.subtracao)
-        bt2.place(x=620, y=500, width=80)
-        if self._inicio == 1:
-            bt2.config(state=tkinter.DISABLED)
-        else:
-            bt2.config(state=tkinter.NORMAL)
-
-
-
-
+            print(self._inicio)
