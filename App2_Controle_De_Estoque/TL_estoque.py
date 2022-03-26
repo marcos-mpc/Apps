@@ -1,8 +1,8 @@
-import tkinter
 from tkinter import *
 from connect_msql import Conector
 
 obj = Conector()
+quantidade = obj.mostrar_soma()
 
 
 class Cosultar:
@@ -12,12 +12,12 @@ class Cosultar:
         self.dados.geometry(f'1350x670+1+9')
         self.dados.resizable(False, False)
         self._inicio = 1
+        self._fim = 10
         self.bt1 = Button(self.dados, text='>', command=self.adicao)
         self.bt1.place(x=700, y=500, width=80)
         self.bt2 = Button(self.dados, text='<', command=self.subtracao, state=DISABLED)
         self.bt2.place(x=620, y=500, width=80)
-        self._fim = 10
-
+        self.lt = obj.mostrar(inicio=self._inicio, fim=self._fim)
         # elementos da tela
         lb_id = Label(self.dados,
                       text='ID',
@@ -60,15 +60,17 @@ class Cosultar:
                         relief='sunken',
                         width=20)
         lb_data.place(x=950, y=75)
+        self.mostrar(self._inicio, self._fim)
 
-        lt = obj.mostrar()
-
+    def mostrar(self, inicio, fim):
+        self.lt = obj.mostrar(inicio=inicio, fim=fim)
         # ID
         lista = Listbox(self.dados,
                         relief='sunken',
                         font=('verdana', 20),
                         justify=CENTER)
-        for c in lt:
+
+        for c in self.lt:
             lista.insert(END, c[0])
         lista.place(x=12, y=120, width=83, height=345)
         # CODIGO
@@ -76,7 +78,7 @@ class Cosultar:
                         relief='sunken',
                         font=('verdana', 20),
                         justify=CENTER)
-        for c in lt:
+        for c in self.lt:
             lista.insert(END, c[1])
         lista.place(x=97, y=120, width=159, height=345)
         # PRODUTOS
@@ -84,7 +86,7 @@ class Cosultar:
                         relief='sunken',
                         font=('verdana', 20),
                         justify=CENTER)
-        for c in lt:
+        for c in self.lt:
             lista.insert(END, c[2])
         lista.place(x=258, y=120, width=178, height=345)
         # TIPO UNITARIO
@@ -92,7 +94,7 @@ class Cosultar:
                         relief='sunken',
                         font=('verdana', 20),
                         justify=CENTER)
-        for c in lt:
+        for c in self.lt:
             lista.insert(END, c[3])
         lista.place(x=438, y=120, width=272, height=345)
         # QUANTIDADE
@@ -100,7 +102,7 @@ class Cosultar:
                         relief='sunken',
                         font=('verdana', 20),
                         justify=CENTER)
-        for c in lt:
+        for c in self.lt:
             lista.insert(END, c[4])
         lista.place(x=713, y=120, width=234, height=345)
         # DATA
@@ -108,26 +110,28 @@ class Cosultar:
                         relief='sunken',
                         font=('verdana', 20),
                         justify=CENTER)
-        for c in lt:
+        for c in self.lt:
             lista.insert(END, c[5])
         lista.place(x=950, y=120, width=385, height=345)
 
     def adicao(self):
         self._inicio += 10
         self._fim += 10
+        if self.lt[0][0] == (quantidade-10):
+            self.bt1['state'] = DISABLED
         if self._inicio > 1:
             self.bt2['state'] = NORMAL
-        print(self._inicio)
+        self.mostrar(self._inicio, self._fim)
 
     def subtracao(self):
         if self._inicio == 11:
             self._inicio = 1
             self._fim = 10
             self.bt2['state'] = DISABLED
-            print(self._inicio)
-
+            self.mostrar(self._inicio, self._fim)
+            self.bt1['state'] = NORMAL
         else:
             self._inicio -= 10
             self._fim -= 10
-
-            print(self._inicio)
+            self.mostrar(self._inicio, self._fim)
+            self.bt1['state'] = NORMAL
