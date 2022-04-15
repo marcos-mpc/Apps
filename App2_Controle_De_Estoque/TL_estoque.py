@@ -14,9 +14,10 @@ class Cosultar:
         self._inicio = 1
         self._fim = 10
         self.bt1 = Button(self.dados, text='>', command=self.adicao)
-        self.bt1.place(x=700, y=500, width=80)
         self.bt2 = Button(self.dados, text='<', command=self.subtracao, state=DISABLED)
-        self.bt2.place(x=620, y=500, width=80)
+        if quantidade > 10:
+            self.bt1.place(x=700, y=500, width=80)
+            self.bt2.place(x=620, y=500, width=80)
         self.lt = obj.mostrar(inicio=self._inicio, fim=self._fim)
         # elementos da tela
         lb_id = Label(self.dados,
@@ -115,9 +116,13 @@ class Cosultar:
         lista.place(x=950, y=120, width=385, height=345)
 
     def adicao(self):
+        lt = []
+        lt.clear()
         self._inicio += 10
         self._fim += 10
-        if self.lt[0][0] == (quantidade-10):
+        for c in range(self._inicio, self._fim+1):
+            lt.append(c)
+        if quantidade in lt:
             self.bt1['state'] = DISABLED
         if self._inicio > 1:
             self.bt2['state'] = NORMAL
