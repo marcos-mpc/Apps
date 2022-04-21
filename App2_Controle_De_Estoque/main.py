@@ -1,5 +1,5 @@
 from TL_estoque import *
-
+from TL_novo_produto import *
 obj = Conector()
 
 # configurações de telas
@@ -16,11 +16,6 @@ tela.resizable(True, True)
 
 
 # Tela de dados
-def novo_produto():
-    produto = Toplevel()
-    produto.title('Novo Produto')
-    produto.geometry('1350x670+1+9')
-
 
 def abastecer():
     entrada = Toplevel()
