@@ -4,19 +4,45 @@ from tkinter import *
 def novo_produto():
     produto = Toplevel()
     produto.title('Novo Produto')
+    produto.resizable(False, False)
+    produto.geometry('743x130+300+300')
+
+    larg = produto.winfo_screenwidth()
+    alt = produto.winfo_screenheight()
+
     # dados da tela
     # labels
-    lb0 = Label(produto, text='CADASTRO DE PRODUTO')
-    lb1 = Label(produto, text='CODIGO')
-    lb2 = Label(produto, text='PRODUTO')
-    lb3 = Label(produto, text='TIPO UNITARIO')
-    lb4 = Label(produto, text='QUANTIDADE')
+    lb = Label(produto)
+    lb0 = Label(produto, text='CADASTRO DE PRODUTO',
+                font=('verdana', 15, 'bold'),
+                relief='ridge',
+                width=52)
+    lb1 = Label(produto, text='CODIGO',
+                font=('verdana', 10, 'bold'),
+                relief='groove',
+                width=20)
+    lb2 = Label(produto, text='PRODUTO',
+                font=('verdana', 10, 'bold'),
+                relief='groove',
+                width=20)
+    lb3 = Label(produto, text='TIPO UNITARIO',
+                font=('verdana', 10, 'bold'),
+                relief='groove',
+                width=20)
+    lb4 = Label(produto, text='QUANTIDADE',
+                font=('verdana', 10, 'bold'),
+                relief='groove',
+                width=20)
 
     # entradas
-    ent1 = Entry(produto)
-    ent2 = Entry(produto)
-    ent3 = Entry(produto)
-    ent4 = Entry(produto)
+    ent1 = Entry(produto, width=30)
+    ent2 = Entry(produto, width=30)
+    ent3 = Entry(produto, width=30)
+    ent4 = Entry(produto, width=30)
+
+    # botoes
+    bt1 = Button(produto, text='Cadastrar')
+    bt2 = Button(produto, text='Cancelar', command=lambda: produto.destroy())
 
     # layout da tela
     # labels
@@ -31,4 +57,8 @@ def novo_produto():
     ent2.grid(row=2, column=2)
     ent3.grid(row=2, column=3)
     ent4.grid(row=2, column=4)
-    # produto.geometry('1350x670+1+9')
+
+    #botoes
+    lb.grid(row=3, columnspan=4)
+    bt1.grid(row=4, column=1, columnspan=2, sticky=E)
+    bt2.grid(row=4, column=3, columnspan=2, sticky=W)
