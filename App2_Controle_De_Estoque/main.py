@@ -1,4 +1,3 @@
-from conexoes import Conector
 from TL_estoque import *
 
 obj = Conector()
