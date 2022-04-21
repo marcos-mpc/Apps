@@ -34,8 +34,3 @@ class Conector:
         self._cursor.execute(f"SELECT count(*) FROM produtos ")
         soma = self._cursor.fetchall()
         return soma[0][0]
-
-
-if __name__ == '__main__':
-    obj = Conector()
-    print(obj.mostrar_soma())

@@ -1,5 +1,5 @@
 from tkinter import *
-from connect_msql import Conector
+from conexoes import Conector
 
 obj = Conector()
 quantidade = obj.mostrar_soma()

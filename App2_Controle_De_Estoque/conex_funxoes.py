@@ -1,5 +1,5 @@
 from mysql.connector import Error
-from connect_msql import Conector
+from conexoes import *
 from datetime import date
 
 
@@ -40,6 +40,3 @@ def saida_de_produto(valor, iden):
         obj.executar(f"UPDATE produtos SET quantidade= (quantidade - '{valor}') WHERE id ='{iden}'")
     except Error:
         print('ERRO! Refaça o processo!')
-
-
-excluir(11)

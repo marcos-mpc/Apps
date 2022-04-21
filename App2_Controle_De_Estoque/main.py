@@ -1,6 +1,5 @@
-from tkinter import *
-from connect_msql import Conector
-from TL_estoque import Cosultar
+from conexoes import Conector
+from TL_estoque import *
 
 obj = Conector()
 
