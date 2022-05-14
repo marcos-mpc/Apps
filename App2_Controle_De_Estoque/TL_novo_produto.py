@@ -13,7 +13,7 @@ class Cadastro:
         self.produto = Toplevel()
         self.produto.title('Novo Produto')
         self.produto.resizable(False, False)
-        self.produto.geometry('743x145+300+300')
+        self.produto.geometry('743x130+300+300')
 
         # dados da tela
         # labels
@@ -82,4 +82,3 @@ class Cadastro:
 
         except ValueError:
             messagebox.showerror('Erro!', 'Informações invalidas. Tente novamente!')
-
