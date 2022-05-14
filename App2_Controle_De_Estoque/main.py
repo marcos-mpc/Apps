@@ -1,5 +1,6 @@
 from TL_estoque import *
-from TL_novo_produto import *
+from TL_novo_produto import Cadastro
+
 obj = Conector()
 
 # configurações de telas
@@ -32,7 +33,7 @@ def saida():
 # configuração de menu
 menu = Menu(tela)
 tabela = Menu(menu, tearoff=0)
-tabela.add_command(label='Novo Produto', command=novo_produto)
+tabela.add_command(label='Novo Produto', command=Cadastro)
 tabela.add_command(label='Cosultar Dados', command=Cosultar)
 menu.add_cascade(label='Tabela', menu=tabela)
 
@@ -53,7 +54,7 @@ Button(tela, text='COSULTAR DADOS', command=Cosultar, font=('verdana', 16, 'ital
        image=image_cosulta, compound='top',
        bg='#9590B0').place(x=400, y=100)
 
-Button(tela, text='NOVO PRODUTO', command=novo_produto,  font=('verdana', 16, 'italic'),
+Button(tela, text='NOVO PRODUTO', command=Cadastro,  font=('verdana', 16, 'italic'),
        image=image_novo, compound='top', bg='#9590B0')\
     .place(x=400, y=420)
 

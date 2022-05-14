@@ -4,10 +4,11 @@ from conex_funxoes import adicionar
 
 class Cadastro:
     def __init__(self):
-        var_codigo = StringVar()
-        var_produto = StringVar()
-        var_tipunit = StringVar()
-        var_quantidade = StringVar()
+        self.codigo = StringVar()
+        self.produto = StringVar()
+        self.tipunit = StringVar()
+        self.quantidade = StringVar()
+
         produto = Toplevel()
         produto.title('Novo Produto')
         produto.resizable(False, False)
@@ -38,14 +39,13 @@ class Cadastro:
                     width=20)
 
         # entradas
-        ent1 = Entry(produto, width=30, textvariable=var_codigo)
-        ent2 = Entry(produto, width=30, textvariable=var_produto)
-        ent3 = Entry(produto, width=30, textvariable=var_tipunit)
-        ent4 = Entry(produto, width=30, textvariable=var_quantidade)
+        ent1 = Entry(produto, width=30, textvariable=self.codigo)
+        ent2 = Entry(produto, width=30, textvariable=self.produto)
+        ent3 = Entry(produto, width=30, textvariable=self.tipunit)
+        ent4 = Entry(produto, width=30, textvariable=self.quantidade)
 
         # botoes
-        bt1 = Button(produto,
-                     text='Cadastrar',)
+        bt1 = Button(produto, text='Cadastrar',)
 
         bt2 = Button(produto,
                      text='Cancelar',
