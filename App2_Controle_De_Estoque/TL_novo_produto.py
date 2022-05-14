@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 from conex_funxoes import adicionar
 
 
@@ -71,20 +72,14 @@ class Cadastro:
         bt2.grid(row=4, column=3, columnspan=2, sticky=W)
 
     def informacoes(self):
-
         try:
             var_codigo = int(self.codigo.get())
             var_produto = str(self.produtos.get()).upper()
             var_tipunit = str(self.tipunit.get()).upper()
             var_quantidade = int(self.quantidade.get())
-            lb5 = Label(self.produto,
-                        text='CADASTRO CONCLUIDO!',
-                        font=('verdana', 10, 'bold'),
-                        relief='groove')
-            lb5.grid(row=5, column=1, columnspan=4)
+            adicionar(var_codigo, var_produto, var_tipunit, var_quantidade)
+            messagebox.showinfo('Cadastro Concluído', 'Produto cadastrado com sucesso')
+
         except ValueError:
-            lb5 = Label(self.produto,
-                        text='VALORES INVALIDOS. TENTE NOVAMENTE!',
-                        font=('verdana', 10, 'bold'),
-                        relief='groove')
-            lb5.grid(row=5, column=1, columnspan=4)
+            messagebox.showerror('Erro!', 'Informações invalidas. Tente novamente!')
+
