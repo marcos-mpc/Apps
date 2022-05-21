@@ -15,10 +15,13 @@ class Cosultar:
         self._fim = 10
         self.bt1 = Button(self.dados, text='>', command=self.adicao)
         self.bt2 = Button(self.dados, text='<', command=self.subtracao, state=DISABLED)
+        txt = Label(self.dados, text='* Para editar ou excluir selecione o ID do produto!')
+        txt.place(x=1050, y=630)
         if quantidade > 10:
             self.bt1.place(x=700, y=500, width=80)
             self.bt2.place(x=620, y=500, width=80)
         self.lt = obj.mostrar(inicio=self._inicio, fim=self._fim)
+
         # elementos da tela
         lb_id = Label(self.dados,
                       text='ID',
@@ -66,22 +69,31 @@ class Cosultar:
     def mostrar(self, inicio, fim):
         self.lt = obj.mostrar(inicio=inicio, fim=fim)
         # ID
-        lista = Listbox(self.dados,
-                        relief='sunken',
-                        font=('verdana', 20),
-                        justify=CENTER)
+        lista_id = Listbox(self.dados,
+                           relief='sunken',
+                           font=('verdana', 20),
+                           justify=CENTER)
 
         for c in self.lt:
-            lista.insert(END, c[0])
-        lista.place(x=12, y=120, width=83, height=345)
+            lista_id.insert(END, c[0])
+        lista_id.place(x=12, y=120, width=83, height=345)
         # CODIGO
         lista = Listbox(self.dados,
                         relief='sunken',
                         font=('verdana', 20),
                         justify=CENTER)
+
+        def selecao():
+            print(lista_id.get(ACTIVE))
+        bt_excluir = Button(self.dados, text='Excuir', command=selecao)
+        bt_excluir.place(x=1200, y=540, width=80)
+        bt_editar = Button(self.dados, text='Editar')
+        bt_editar.place(x=1200, y=575, width=80)
+
         for c in self.lt:
             lista.insert(END, c[1])
         lista.place(x=97, y=120, width=159, height=345)
+
         # PRODUTOS
         lista = Listbox(self.dados,
                         relief='sunken',
